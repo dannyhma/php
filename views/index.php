@@ -36,16 +36,17 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
     $i = 1;
     foreach ($mahasiswa as $row) :
     ?>
-      <tr>
-        <td><?= $i++; ?></td>
-        <td><a href="">Edit</a> | <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Hapus?');">Hapus</a>
-        </td>
-        <td><img src="img/<?= $row["gambar"]; ?>" width="50px" alt=""></td>
-        <td><?php echo $row["nim"]; ?></td>
-        <td><?php echo $row["nama"]; ?></td>
-        <td><?php echo $row["email"]; ?></td>
-        <td><?php echo $row["jurusan"]; ?></td>
-      </tr>
+    <tr>
+      <td><?= $i++; ?></td>
+      <td><a href="ubah.php?id=<?= $row["id"]; ?>">Ubah</a> | <a href="hapus.php?id=<?= $row["id"]; ?>"
+          onclick="return confirm('Hapus?');">Hapus</a>
+      </td>
+      <td><img src="img/<?= $row["gambar"]; ?>" width="50px" alt=""></td>
+      <td><?php echo $row["nim"]; ?></td>
+      <td><?php echo $row["nama"]; ?></td>
+      <td><?php echo $row["email"]; ?></td>
+      <td><?php echo $row["jurusan"]; ?></td>
+    </tr>
     <?php endforeach; ?>
   </table>
 </body>

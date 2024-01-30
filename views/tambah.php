@@ -2,20 +2,20 @@
 require_once 'functions.php';
 
 if (isset($_POST["submit"])) {
-    // cek apakah data berhasil ditambahkan atau tidak
-    if (tambah($_POST) > 0) {
-        echo "
+  // cek apakah data berhasil ditambahkan atau tidak
+  if (tambah($_POST) > 0) {
+    echo "
         <script>
             alert('Data Berhasil Ditambahkan');
             document.location.href = 'index.php'
         </script>";
-    } else {
-        echo "
+  } else {
+    echo "
         <script>
             alert('Data Gagal Ditambahkan');
             document.location.href = 'index.php'
         </script>";
-    }
+  }
 }
 ?>
 
@@ -30,6 +30,8 @@ if (isset($_POST["submit"])) {
 
 <body>
   <h1>Tambah data mahasiswa</h1>
+
+  <a href="./index.php">Back</a>
 
   <form action="" method="post">
     <ul>
