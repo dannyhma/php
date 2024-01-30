@@ -37,8 +37,9 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
     foreach ($mahasiswa as $row) :
     ?>
       <tr>
-        <td>1</td>
-        <td><a href="">Edit</a> | <a href="">Hapus</a></td>
+        <td><?= $i++; ?></td>
+        <td><a href="">Edit</a> | <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Hapus?');">Hapus</a>
+        </td>
         <td><img src="img/<?= $row["gambar"]; ?>" width="50px" alt=""></td>
         <td><?php echo $row["nim"]; ?></td>
         <td><?php echo $row["nama"]; ?></td>
