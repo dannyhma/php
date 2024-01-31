@@ -3,7 +3,6 @@
 // koneksi database
 $conn = mysqli_connect("localhost", "root", "", "basicphp");
 
-
 function query($query)
 {
   // Menggunakan variabel global $conn
@@ -17,7 +16,6 @@ function query($query)
   }
   return $rows;
 }
-
 
 function tambah($data)
 {

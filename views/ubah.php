@@ -6,7 +6,7 @@ $id = $_GET["id"];
 
 // query data mahasiswa berdasarkan id
 $mhs = query("SELECT * FROM mahasiswa WHERE id = $id")[0];
-var_dump($mhs["nama"]);
+// var_dump($mhs["nama"]);
 
 if (isset($_POST["submit"])) {
   // cek apakah data berhasil diubah atau tidak
