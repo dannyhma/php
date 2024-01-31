@@ -97,7 +97,6 @@ function hapus($id)
   return mysqli_affected_rows($conn);
 }
 
-
 function ubah($data)
 {
   global $conn;
@@ -110,8 +109,11 @@ function ubah($data)
   $gambarLama = htmlspecialchars($data["gambarLama"]);
 
   // cek apakah user pilih gambar baru atau tidak
-
-  $gambar = htmlspecialchars($data["gambar"]);
+  if ($_FILES['gambar']['error'] === 4) {
+    $gambar = $gambarLama;
+  } else {
+    $gambar = upload();
+  }
 
   // query update data
   $query = "UPDATE mahasiswa SET 

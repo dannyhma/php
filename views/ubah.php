@@ -47,7 +47,7 @@ if (isset($_POST["submit"])) {
       <li>
         <label for="gambar">Gambar :</label> <br>
         <img src="img/<?= $mhs["gambar"] ?>" width="100"> <br>
-        <input type="file" name="gambar" id="gambar" required>
+        <input type="file" name="gambar" id="gambar">
       </li>
       <li>
         <label for="nim">NIM :</label>
