@@ -2,7 +2,12 @@
 
 require_once 'functions.php';
 
-$mahasiswa = query("SELECT * FROM mahasiswa");
+$mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id ASC");
+
+// tombol cari ditekan
+if (isset($_POST["cari"])) {
+  $mahasiswa = cari($_POST["keyword"]);
+}
 
 ?>
 
@@ -20,6 +25,11 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 
   <a href="tambah.php">Tambah data mahasiswa</a>
 
+  <form action="" method="post">
+    <input type="text" name="keyword" autofocus placeholder="Masukkan keyword" autocomplete="off">
+    <button type="submit" name="cari">Cari!</button>
+  </form>
+
   <table border="1" cellpadding="10" cellspacing="0">
 
     <tr>
@@ -36,17 +46,16 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
     $i = 1;
     foreach ($mahasiswa as $row) :
     ?>
-    <tr>
-      <td><?= $i++; ?></td>
-      <td><a href="ubah.php?id=<?= $row["id"]; ?>">Ubah</a> | <a href="hapus.php?id=<?= $row["id"]; ?>"
-          onclick="return confirm('Hapus?');">Hapus</a>
-      </td>
-      <td><img src="img/<?= $row["gambar"]; ?>" width="50px" alt=""></td>
-      <td><?php echo $row["nim"]; ?></td>
-      <td><?php echo $row["nama"]; ?></td>
-      <td><?php echo $row["email"]; ?></td>
-      <td><?php echo $row["jurusan"]; ?></td>
-    </tr>
+      <tr>
+        <td><?= $i++; ?></td>
+        <td><a href="ubah.php?id=<?= $row["id"]; ?>">Ubah</a> | <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Hapus?');">Hapus</a>
+        </td>
+        <td><img src="img/<?= $row["gambar"]; ?>" width="50px" alt=""></td>
+        <td><?php echo $row["nim"]; ?></td>
+        <td><?php echo $row["nama"]; ?></td>
+        <td><?php echo $row["email"]; ?></td>
+        <td><?php echo $row["jurusan"]; ?></td>
+      </tr>
     <?php endforeach; ?>
   </table>
 </body>
