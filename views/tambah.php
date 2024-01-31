@@ -12,8 +12,7 @@ if (isset($_POST["submit"])) {
   } else {
     echo "
         <script>
-            alert('Data Gagal Ditambahkan');
-            document.location.href = 'index.php'
+            alert('Data Gagal Ditambahkan');           
         </script>";
   }
 }
@@ -33,11 +32,11 @@ if (isset($_POST["submit"])) {
 
   <a href="./index.php">Back</a>
 
-  <form action="" method="post">
+  <form action="" method="post" enctype="multipart/form-data">
     <ul>
       <li>
         <label for="gambar">Gambar :</label>
-        <input type="text" name="gambar" id="gambar" require>
+        <input type="file" name="gambar" id="gambar" require>
       </li>
       <li>
         <label for="nim">NIM :</label>

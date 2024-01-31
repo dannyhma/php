@@ -27,13 +27,66 @@ function tambah($data)
   $nim = htmlspecialchars($data["nim"]);
   $email = htmlspecialchars($data["email"]);
   $jurusan = htmlspecialchars($data["jurusan"]);
-  $gambar = htmlspecialchars($data["gambar"]);
+
+  // upload gambar
+  $gambar = upload();
+  if (!$gambar) {
+    return false;
+  }
 
   // query insert data
   $query = "INSERT INTO mahasiswa VALUES ('', '$nama', '$nim', '$email', '$jurusan', '$gambar')";
   mysqli_query($conn, $query);
 
   return mysqli_affected_rows($conn);
+}
+
+function upload()
+{
+  $namaFile = $_FILES['gambar']['name'];
+  $ukuranFile = $_FILES['gambar']['size'];
+  $error = $_FILES['gambar']['error'];
+  $tmpName = $_FILES['gambar']['tmp_name'];
+
+  // cek apakah tidak ada gambar yang diupload
+  if ($error === 4) {
+    echo "
+    <script>
+        alert('Pilih Gambar Dulu');       
+    </script>";
+    return false;
+  }
+
+  // cek apakah yang diupload adalah gambar
+  $extFile = ['jpg', 'jpeg', 'png'];
+  $extGambar = explode('.', $namaFile);
+  $extGambar = strtolower(end($extGambar));
+  if (!in_array($extGambar, $extFile)) {
+    echo "
+    <script>
+        alert('Yang Anda Upload Bukan Gambar');   
+    </script>";
+    return false;
+  }
+
+  // cek jika ukuran gambar terlalu besar
+  if ($ukuranFile > 1000000) {
+    echo "
+    <script>
+        alert('Ukuran Gambar Terlalu Besar');        
+    </script>";
+    return false;
+  }
+
+  // lolos pengecekan gambar, siap upload
+  // generate nama gambar baru
+  $namaFileBaru = uniqid();
+  $namaFileBaru .= '.';
+  $namaFileBaru .= $extGambar;
+
+  move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+
+  return $namaFileBaru;
 }
 
 function hapus($id)
@@ -54,6 +107,10 @@ function ubah($data)
   $nim = htmlspecialchars($data["nim"]);
   $email = htmlspecialchars($data["email"]);
   $jurusan = htmlspecialchars($data["jurusan"]);
+  $gambarLama = htmlspecialchars($data["gambarLama"]);
+
+  // cek apakah user pilih gambar baru atau tidak
+
   $gambar = htmlspecialchars($data["gambar"]);
 
   // query update data

@@ -40,12 +40,14 @@ if (isset($_POST["submit"])) {
 
   <a href="./index.php">Back</a>
 
-  <form action="" method="post">
+  <form action="" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?= $mhs["id"]; ?>">
+    <input type="hidden" name="gambarLama" value="<?= $mhs["gambar"]; ?>">
     <ul>
       <li>
-        <label for="gambar">Gambar :</label>
-        <input type="text" name="gambar" id="gambar" required value="<?= $mhs["gambar"]; ?>">
+        <label for="gambar">Gambar :</label> <br>
+        <img src="img/<?= $mhs["gambar"] ?>" width="100"> <br>
+        <input type="file" name="gambar" id="gambar" required>
       </li>
       <li>
         <label for="nim">NIM :</label>
