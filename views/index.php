@@ -44,56 +44,61 @@ if (isset($_POST["cari"])) {
   <a href="logout.php">Logout</a>
 
   <form action="" method="post">
-    <input type="text" name="keyword" autofocus placeholder="Masukkan keyword" autocomplete="off">
-    <button type="submit" name="cari">Cari!</button>
+    <input id="keyword" type="text" name="keyword" autofocus placeholder="Masukkan keyword" autocomplete="off">
+    <button id="searchButton" type="submit" name="cari">Cari!</button>
   </form>
 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tr>
-      <th>No.</th>
-      <th>Aksi</th>
-      <th>Gambar</th>
-      <th>Nim</th>
-      <th>Nama</th>
-      <th>Email</th>
-      <th>Jurusan</th>
-    </tr>
+  <br>
 
-    <?php
-    $i = 1;
-    foreach ($mahasiswa as $row) :
-    ?>
-    <tr>
-      <td><?= $i++; ?></td>
-      <td><a href="ubah.php?id=<?= $row["id"]; ?>">Ubah</a> | <a href="hapus.php?id=<?= $row["id"]; ?>"
-          onclick="return confirm('Hapus?');">Hapus</a>
-      </td>
-      <td><img src="img/<?= $row["gambar"]; ?>" width="50px" alt=""></td>
-      <td><?php echo $row["nim"]; ?></td>
-      <td><?php echo $row["nama"]; ?></td>
-      <td><?php echo $row["email"]; ?></td>
-      <td><?php echo $row["jurusan"]; ?></td>
-    </tr>
-    <?php endforeach; ?>
-  </table>
+  <div id="container">
+    <table border="1" cellpadding="10" cellspacing="0">
+      <tr>
+        <th>No.</th>
+        <th>Aksi</th>
+        <th>Gambar</th>
+        <th>Nim</th>
+        <th>Nama</th>
+        <th>Email</th>
+        <th>Jurusan</th>
+      </tr>
+
+      <?php
+      $i = 1;
+      foreach ($mahasiswa as $row) :
+      ?>
+        <tr>
+          <td><?= $i++; ?></td>
+          <td><a href="ubah.php?id=<?= $row["id"]; ?>">Ubah</a> | <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Hapus?');">Hapus</a>
+          </td>
+          <td><img src="img/<?= $row["gambar"]; ?>" width="50px" alt=""></td>
+          <td><?php echo $row["nim"]; ?></td>
+          <td><?php echo $row["nama"]; ?></td>
+          <td><?php echo $row["email"]; ?></td>
+          <td><?php echo $row["jurusan"]; ?></td>
+        </tr>
+      <?php endforeach; ?>
+    </table>
+  </div>
 
   <!-- navigasi -->
   <?php if ($halamanAktif > 1) : ?>
-  <a href="?halaman=<?= $halamanAktif - 1 ?>">&laquo;</a>
+    <a href="?halaman=<?= $halamanAktif - 1 ?>">&laquo;</a>
   <?php endif; ?>
 
   <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
-  <?php if ($i == $halamanAktif) : ?>
-  <a href="?halaman=<?= $i ?>" style="font-wright: bold; color: black;"><?= $i ?></a>
-  <?php else : ?>
-  <a href="?halaman=<?= $i ?>"><?= $i ?></a>
-  <?php endif; ?>
+    <?php if ($i == $halamanAktif) : ?>
+      <a href="?halaman=<?= $i ?>" style="font-wright: bold; color: black;"><?= $i ?></a>
+    <?php else : ?>
+      <a href="?halaman=<?= $i ?>"><?= $i ?></a>
+    <?php endif; ?>
   <?php endfor; ?>
 
   <!-- navigasi -->
   <?php if ($halamanAktif < $jumlahHalaman) : ?>
-  <a href="?halaman=<?= $halamanAktif + 1 ?>">&raquo;</a>
+    <a href="?halaman=<?= $halamanAktif + 1 ?>">&raquo;</a>
   <?php endif; ?>
+
+  <script src="js/script.js"></script>
 </body>
 
 </html>
