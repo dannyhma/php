@@ -6,3 +6,11 @@
   z-index: -1;
   display: none;
 }
+
+@media print {
+  .tambah,
+  .logout,
+  .searchForm {
+    display: none;
+  }
+}

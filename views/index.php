@@ -42,11 +42,11 @@ if (isset($_POST["cari"])) {
 <body>
   <h1>Daftar Mahasiswa</h1>
 
-  <a href="tambah.php">Tambah data mahasiswa</a>
+  <a href="tambah.php" class="tambah">Tambah data mahasiswa</a>
 
-  <a href="logout.php">Logout</a>
+  <a href="logout.php" class="logout">Logout</a> | <a href="print.php" class="print" target="_blank">Cetak</a>
 
-  <form action="" method="post">
+  <form action="" method="post" class="searchForm">
     <input id="keyword" type="text" name="keyword" autofocus placeholder="Masukkan keyword" autocomplete="off">
     <button id="searchButton" type="submit" name="cari">Cari!</button>
     <img src="assets/loader.gif" class="loader">
