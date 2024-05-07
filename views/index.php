@@ -11,7 +11,7 @@ require_once 'functions.php';
 
 // pagination
 // konfigurasi
-$jumlahDataPerhalaman = 4;
+$jumlahDataPerhalaman = 8;
 $jumlahData = count(query("SELECT * FROM mahasiswa"));
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerhalaman);
 $halamanAktif = (isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
